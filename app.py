@@ -25,7 +25,7 @@ st.markdown("<p style='text-align: center; color: #CCCCCC;'>Selecione uma opçã
 col1, col2, col3 = st.columns([1, 2, 1]) # Usar colunas para centralizar
 with col2:
     # Exibir a imagem do computador
-    st.image("static/computer.png", width=300, caption="Sistema Principal")
+    st.image("static/computer.jpg", width=300, caption="Sistema Principal")
 
 st.markdown("---") # Separador visual
 
