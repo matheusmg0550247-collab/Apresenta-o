@@ -1,0 +1,44 @@
+/* Fundo preto para toda a aplicação */
+body {
+    background-color: black !important;
+    color: white !important; /* Texto branco para contraste */
+}
+
+/* Ajustar o fundo principal do Streamlit */
+.stApp {
+    background-color: black !important;
+    color: white !important;
+}
+
+/* Ocultar o topo padrão do Streamlit (onde fica o menu de hambúrguer, etc.) se necessário */
+header {
+    visibility: hidden;
+    height: 0;
+}
+
+/* Estilo para os botões do menu */
+.stButton>button {
+    background-color: #333333; /* Cinza escuro */
+    color: white;
+    border: 2px solid #00FFFF; /* Borda ciano para efeito neon */
+    border-radius: 12px; /* Cantos arredondados */
+    padding: 10px 20px;
+    font-size: 18px;
+    font-weight: bold;
+    transition: all 0.3s ease; /* Transição suave para o hover */
+    box-shadow: 0 0 10px #00FFFF, 0 0 20px #00FFFF; /* Sombra neon */
+}
+
+.stButton>button:hover {
+    background-color: #00FFFF; /* Fundo ciano no hover */
+    color: black; /* Texto preto no hover */
+    box-shadow: 0 0 15px #00FFFF, 0 0 25px #00FFFF, 0 0 35px #00FFFF; /* Sombra mais intensa */
+    transform: translateY(-2px); /* Pequeno movimento para cima */
+}
+
+/* Centralizar conteúdo principal (opcional, mas bom para a imagem central) */
+.main .block-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
