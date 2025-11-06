@@ -1,43 +1,84 @@
 import streamlit as st
-import plotly.graph_objects as go
+import base64
 
-# Configura o layout da página para ser "largo" (wide)
+# Configurações da página
 st.set_page_config(
-    page_title="Apresentação Interativa",
-    layout="wide"
+    page_title="Apresentação Futurista",
+    layout="centered", # Centered para focar na imagem e menus
+    initial_sidebar_state="collapsed" # Esconder a barra lateral padrão se não for usar as pages/
 )
 
-st.title("🌍 Minha Apresentação Interativa")
-st.write("Bem-vindo! Use o menu na barra lateral para navegar para as outras telas.")
+# --- Carregar CSS Customizado ---
+def load_css(file_name):
+    with open(file_name) as f:
+        st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
 
-# --- O Globo Giratório com Plotly ---
-st.header("Globo Interativo")
+load_css("static/style.css")
 
-# Criamos uma figura do Plotly
-fig = go.Figure(go.Scattergeo(
-    lat=[0], # Usamos um ponto simbólico no centro
-    lon=[0],
-    mode='markers',
-    marker=dict(size=1, color='rgba(0,0,0,0)') # Marcador invisível
-))
 
-# Atualizamos o layout para mostrar um globo 3D (ortográfico)
-fig.update_layout(
-    title="Clique e arraste o globo para girar!",
-    geo=dict(
-        projection_type='orthographic', # Tipo de projeção que parece um globo
-        showland=True,                   # Mostrar continentes
-        landcolor='rgb(217, 217, 217)',
-        showocean=True,                  # Mostrar oceanos
-        oceancolor='rgb(100, 149, 237)',
-        showcountries=True,
-        countrycolor='rgb(60, 60, 60)',
-        showcoastlines=True,
-        coastlinecolor='rgb(80, 80, 80)',
-    ),
-    height=600, # Altura do globo
-    margin={"r":0,"t":50,"l":0,"b":0} # Ajustar margens
-)
+# --- Conteúdo Principal: Imagem do Computador e Menus ---
 
-# Exibe o gráfico Plotly no Streamlit
-st.plotly_chart(fig, use_container_width=True)
+st.markdown("<h1 style='text-align: center; color: white;'>🧠💻 Apresentação Futurista 🌐</h1>", unsafe_allow_html=True)
+st.markdown("<p style='text-align: center; color: #CCCCCC;'>Selecione uma opção abaixo para navegar.</p>", unsafe_allow_html=True)
+
+# Centralizar a imagem do computador
+col1, col2, col3 = st.columns([1, 2, 1]) # Usar colunas para centralizar
+with col2:
+    # Exibir a imagem do computador
+    st.image("static/computer.png", width=300, caption="Sistema Principal")
+
+st.markdown("---") # Separador visual
+
+# --- Menus "Giratórios" (Botões Estilizados) ---
+# Vamos criar botões que simulam a navegação.
+# Para navegar entre páginas (`pages/`), o usuário ainda usaria a sidebar ou links diretos.
+# Mas aqui, vamos simular um menu *dentro* da página principal.
+
+st.markdown("<h2 style='text-align: center; color: white;'>Navegação Rápida</h2>", unsafe_allow_html=True)
+
+# Usar colunas para dispor os botões horizontalmente e dar um senso de "órbita"
+menu_cols = st.columns(3)
+
+if menu_cols[0].button("Apresentação Detalhada"):
+    st.session_state.current_page = "detalhes"
+
+if menu_cols[1].button("Módulos Interativos"):
+    st.session_state.current_page = "modulos"
+
+if menu_cols[2].button("Configurações Avançadas"):
+    st.session_state.current_page = "configuracoes"
+
+st.markdown("---") # Separador visual
+
+# --- Área de Conteúdo Dinâmico ---
+# O conteúdo abaixo mudará com base no botão clicado
+
+if 'current_page' not in st.session_state:
+    st.session_state.current_page = "home"
+
+if st.session_state.current_page == "home":
+    st.markdown("<h3 style='text-align: center; color: #00FFFF;'>Bem-vindo ao Sistema!</h3>", unsafe_allow_html=True)
+    st.write("Esta é a sua tela inicial com o computador central. Explore as opções acima!")
+    st.write("Você pode adicionar mais informações ou um texto introdutório aqui.")
+
+elif st.session_state.current_page == "detalhes":
+    st.markdown("<h3 style='text-align: center; color: #00FFFF;'>Seção de Detalhes da Apresentação</h3>", unsafe_allow_html=True)
+    st.write("Aqui você pode colocar gráficos, textos e informações aprofundadas sobre o seu projeto.")
+    st.write("Exemplo de conteúdo:")
+    st.info("Informação importante sobre a apresentação.")
+
+elif st.session_state.current_page == "modulos":
+    st.markdown("<h3 style='text-align: center; color: #00FFFF;'>Módulos Interativos</h3>", unsafe_allow_html=True)
+    st.write("Nesta seção, você pode adicionar funcionalidades interativas, como sliders, botões para acionar funções ou gráficos dinâmicos.")
+    valor = st.slider("Selecione um valor:", 0, 100, 50)
+    st.write(f"Você selecionou: {valor}")
+
+elif st.session_state.current_page == "configuracoes":
+    st.markdown("<h3 style='text-align: center; color: #00FFFF;'>Configurações Avançadas</h3>", unsafe_allow_html=True)
+    st.write("Área para definir parâmetros, opções ou visualizar status do sistema.")
+    st.checkbox("Habilitar modo escuro (já está, mas é um exemplo!)")
+
+# Para retornar à página "01_Outra_Tela.py" via sidebar, você precisaria do sidebar.
+# Se você *realmente* quiser desativar a sidebar para esse look,
+# terá que fazer a navegação entre as páginas do *app.py* e *01_Outra_Tela.py* via `st.link_button` ou similar.
+# Por enquanto, vou manter as `pages/` mas com a sidebar "colapsada" (escondida por padrão).
