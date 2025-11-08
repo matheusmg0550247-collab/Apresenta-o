@@ -89,8 +89,6 @@ if 'current_page' not in st.session_state:
 if st.session_state.current_page == "home":
     pass # Não mostra nada
 
-# ... (o resto do seu app.py continua igual) ...
-
 elif st.session_state.current_page == "detalhes":
     st.markdown("<h3 style='text-align: center; color: #00FFFF;'>Seção de Detalhes da Apresentação</h3>", unsafe_allow_html=True)
     st.write("Aqui você pode colocar gráficos, textos e informações aprofundadas sobre o seu projeto.")
