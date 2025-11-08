@@ -1,7 +1,7 @@
 import streamlit as st
 import base64
 from pathlib import Path
-from streamlit.runtime.scriptrunner import get_script_run_ctx # Importa o switch_page
+# Removida a importação 'get_script_run_ctx', não é necessária aqui
 
 # --- Configurações de Página e Caminhos ---
 THIS_DIR = Path(__file__).parent
@@ -72,19 +72,16 @@ with col_texto:
 st.markdown('<div class="button-container">', unsafe_allow_html=True)
 menu_cols = st.columns(3)
 
-# MUDANÇA: Agora usamos st.switch_page
+# MUDANÇA: CORRIGIDO AQUI
 if menu_cols[0].button("Gemini no Email"):
-    st.switch_page("pages/01_Gemini_Email.py")
+    st.switch_page("01_Gemini_Email")
 
 if menu_cols[1].button("Módulos Interativos"):
     st.warning("Página 'Módulos' ainda não criada.")
-    # st.switch_page("pages/02_Modulos.py") # (Quando você criar o arquivo)
+    # st.switch_page("02_Modulos") # (Quando você criar o arquivo)
 
 if menu_cols[2].button("Configurações Avançadas"):
     st.warning("Página 'Configurações' ainda não criada.")
-    # st.switch_page("pages/03_Configuracoes.py") # (Quando você criar o arquivo)
+    # st.switch_page("03_Configuracoes") # (Quando você criar o arquivo)
 
 st.markdown('</div>', unsafe_allow_html=True)
-
-# MUDANÇA: Toda a lógica de "if current_page ==" e "modal" foi REMOVIDA daqui.
-# Este arquivo agora é SÓ a página inicial.
