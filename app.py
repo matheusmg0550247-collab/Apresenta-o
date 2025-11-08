@@ -41,13 +41,13 @@ def get_video_as_base64(video_file):
 st.markdown("<h1 style='text-align: center; color: white;'>🧠💻 Integrando a IA e programas do convênio Google no dia a dia dos cartórios 🌐</h1>", unsafe_allow_html=True)
 
 # --- Layout Principal (Vídeo na Esquerda, Texto na Direita) ---
-col_media, col_texto = st.columns([3, 2], gap="large")
+# MUDANÇA: 'gap' de "large" para "medium" para trazer o texto para a esquerda
+col_media, col_texto = st.columns([3, 2], gap="medium")
 
 with col_media:
     # --- VÍDEO ---
     video_b64 = get_video_as_base64(VIDEO_FILE)
     if video_b64:
-        # MUDANÇA: Removida a classe 'flex-center-vertical'
         video_html = f"""
         <div class="video-container">
             <video controlslist="nodownload" autoplay loop muted playsinline style="width: 100%; border-radius: 10px; object-fit: cover;">
@@ -60,7 +60,6 @@ with col_media:
 
 with col_texto:
     # --- TEXTO ANIMADO (LADO DIREITO) ---
-    # MUDANÇA: Removido o wrapper <div class="flex-center-vertical">
     texto_para_animar = """
     <div class="animated-text-right">
         <p>A rotina de um cartório é marcada por um <b>alto volume de informações</b>, processos repetitivos e a necessidade de <b>precisão absoluta</b>.</p>
@@ -71,8 +70,7 @@ with col_texto:
     st.markdown(texto_para_animar, unsafe_allow_html=True)
 
 # --- Menus "Giratórios" (Botões Estilizados) ---
-st.markdown("<h2 style='text-align: center; color: white;'>Navegação Rápida</h2>", unsafe_allow_html=True)
-
+# MUDANÇA: Título "Navegação Rápida" foi REMOVIDO daqui
 menu_cols = st.columns(3)
 
 if menu_cols[0].button("Apresentação Detalhada"):
@@ -88,9 +86,8 @@ if menu_cols[2].button("Configurações Avançadas"):
 if 'current_page' not in st.session_state:
     st.session_state.current_page = "home"
 
-# MUDANÇA: Textos de "home" foram removidos
 if st.session_state.current_page == "home":
-    pass # Não mostra nada quando a página é "home"
+    pass # Não mostra nada
 
 elif st.session_state.current_page == "detalhes":
     st.markdown("<h3 style='text-align: center; color: #00FFFF;'>Seção de Detalhes da Apresentação</h3>", unsafe_allow_html=True)
