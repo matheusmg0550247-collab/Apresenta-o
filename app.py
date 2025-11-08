@@ -47,9 +47,9 @@ with col_media:
     # --- VÍDEO ---
     video_b64 = get_video_as_base64(VIDEO_FILE)
     if video_b64:
-        # MUDANÇA: Adicionada a classe 'flex-center-vertical' para centralizar o vídeo
+        # MUDANÇA: Removida a classe 'flex-center-vertical'
         video_html = f"""
-        <div class="video-container flex-center-vertical">
+        <div class="video-container">
             <video controlslist="nodownload" autoplay loop muted playsinline style="width: 100%; border-radius: 10px; object-fit: cover;">
                 <source src="data:video/mp4;base64,{video_b64}" type="video/mp4">
                 Seu navegador não suporta a tag de vídeo.
@@ -60,13 +60,12 @@ with col_media:
 
 with col_texto:
     # --- TEXTO ANIMADO (LADO DIREITO) ---
+    # MUDANÇA: Removido o wrapper <div class="flex-center-vertical">
     texto_para_animar = """
-    <div class="flex-center-vertical">
-        <div class="animated-text-right">
-            <p>A rotina de um cartório é marcada por um <b>alto volume de informações</b>, processos repetitivos e a necessidade de <b>precisão absoluta</b>.</p>
-            <p>No entanto, a era digital oferece uma oportunidade sem precedentes para transformar essa realidade.</p>
-            <p>Ao integrar a <b>inteligência artificial (IA)</b> e as <b>ferramentas do Google</b> no dia a dia, os cartórios podem não apenas otimizar suas atividades, mas também revolucionar a forma como operam.</p>
-        </div>
+    <div class="animated-text-right">
+        <p>A rotina de um cartório é marcada por um <b>alto volume de informações</b>, processos repetitivos e a necessidade de <b>precisão absoluta</b>.</p>
+        <p>No entanto, a era digital oferece uma oportunidade sem precedentes para transformar essa realidade.</p>
+        <p>Ao integrar a <b>inteligência artificial (IA)</b> e as <b>ferramentas do Google</b> no dia a dia, os cartórios podem não apenas otimizar suas atividades, mas também revolucionar a forma como operam.</p>
     </div>
     """
     st.markdown(texto_para_animar, unsafe_allow_html=True)
@@ -89,9 +88,9 @@ if menu_cols[2].button("Configurações Avançadas"):
 if 'current_page' not in st.session_state:
     st.session_state.current_page = "home"
 
+# MUDANÇA: Textos de "home" foram removidos
 if st.session_state.current_page == "home":
-    st.markdown("<h3 style='text-align: center; color: #00FFFF;'>Bem-vindo ao Sistema!</h3>", unsafe_allow_html=True)
-    st.write("Esta é a sua tela inicial. Explore as opções acima!")
+    pass # Não mostra nada quando a página é "home"
 
 elif st.session_state.current_page == "detalhes":
     st.markdown("<h3 style='text-align: center; color: #00FFFF;'>Seção de Detalhes da Apresentação</h3>", unsafe_allow_html=True)
