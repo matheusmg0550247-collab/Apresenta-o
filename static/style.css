@@ -26,15 +26,21 @@ section.main {
     flex-grow: 1;
     display: flex;
     flex-direction: column;
-    justify-content: center; /* Tenta centralizar o conteúdo verticalmente */
-    padding-top: 1rem !important; /* Reduz espaçamento superior */
-    padding-bottom: 1rem !important; /* Reduz espaçamento inferior */
+    /* MUDANÇA: 'space-around' para distribuir o espaço vertical */
+    justify-content: space-around; 
+    padding-top: 0rem !important; /* Remove espaçamento superior */
+    padding-bottom: 0rem !important; /* Remove espaçamento inferior */
 }
 
-/* --- NOVO: Reduz margens dos títulos --- */
+/* MUDANÇA: Títulos com margem zero para compactar */
 h1, h2 {
-    margin-top: 0.5rem !important;
+    margin-top: 0rem !important;
     margin-bottom: 0.5rem !important;
+}
+
+h1 {
+    /* MUDANÇA: Adiciona um pouco de padding para o título não colar no topo */
+    padding-top: 1rem !important;
 }
 
 /* Ocultar topo padrão do Streamlit */
@@ -75,10 +81,20 @@ header {
     }
 }
 
+/* --- NOVO: Classe para centralizar o texto verticalmente --- */
+.flex-center-vertical {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* Faz o container ter a altura total do espaço da coluna */
+    height: 100%; 
+}
+
 /* Classe do texto animado */
 .animated-text-right {
-    /* MUDANÇA: Duração da animação aumentada para 3 segundos */
-    animation: fadeInRight 3s ease-out;
+    /* MUDANÇA: Duração de 4s, atraso de 1s, e 'forwards' para manter o estado final */
+    animation: fadeInRight 4s ease-out 1s forwards;
+    opacity: 0; /* Começa invisível para a animação funcionar */
     padding: 20px;
     font-size: 1.1em;
     color: #DDDDDD;
