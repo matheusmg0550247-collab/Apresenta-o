@@ -1,7 +1,6 @@
 import streamlit as st
 import base64
 from pathlib import Path
-# Removida a importação 'get_script_run_ctx', não é necessária aqui
 
 # --- Configurações de Página e Caminhos ---
 THIS_DIR = Path(__file__).parent
@@ -74,14 +73,14 @@ menu_cols = st.columns(3)
 
 # MUDANÇA: CORRIGIDO AQUI
 if menu_cols[0].button("Gemini no Email"):
-    st.switch_page("01_Gemini_Email")
+    st.switch_page("Gemini_Email")
 
 if menu_cols[1].button("Módulos Interativos"):
     st.warning("Página 'Módulos' ainda não criada.")
-    # st.switch_page("02_Modulos") # (Quando você criar o arquivo)
+    # st.switch_page("Modulos") # (Quando você criar o arquivo)
 
 if menu_cols[2].button("Configurações Avançadas"):
     st.warning("Página 'Configurações' ainda não criada.")
-    # st.switch_page("03_Configuracoes") # (Quando você criar o arquivo)
+    # st.switch_page("Configuracoes") # (Quando você criar o arquivo)
 
 st.markdown('</div>', unsafe_allow_html=True)
