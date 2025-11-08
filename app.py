@@ -1,6 +1,7 @@
 import streamlit as st
 import base64
 from pathlib import Path
+from streamlit.runtime.scriptrunner import get_script_run_ctx # Importa o switch_page
 
 # --- Configurações de Página e Caminhos ---
 THIS_DIR = Path(__file__).parent
@@ -31,7 +32,6 @@ def get_video_as_base64(video_file):
         return base64.b64encode(data).decode("utf-8")
     except FileNotFoundError:
         st.error(f"Arquivo de vídeo não encontrado: {video_file}")
-        st.warning("Por favor, faça o upload do 'Computador.mp4' para a pasta 'static' no seu GitHub.")
         return None
     except Exception as e:
         st.error(f"Erro ao carregar o vídeo: {e}")
@@ -72,75 +72,19 @@ with col_texto:
 st.markdown('<div class="button-container">', unsafe_allow_html=True)
 menu_cols = st.columns(3)
 
-# MUDANÇA: Texto do botão alterado
+# MUDANÇA: Agora usamos st.switch_page
 if menu_cols[0].button("Gemini no Email"):
-    st.session_state.current_page = "detalhes"
+    st.switch_page("pages/01_Gemini_Email.py")
 
 if menu_cols[1].button("Módulos Interativos"):
-    st.session_state.current_page = "modulos"
+    st.warning("Página 'Módulos' ainda não criada.")
+    # st.switch_page("pages/02_Modulos.py") # (Quando você criar o arquivo)
 
 if menu_cols[2].button("Configurações Avançadas"):
-    st.session_state.current_page = "configuracoes"
+    st.warning("Página 'Configurações' ainda não criada.")
+    # st.switch_page("pages/03_Configuracoes.py") # (Quando você criar o arquivo)
+
 st.markdown('</div>', unsafe_allow_html=True)
 
-
-# --- Área de Conteúdo Dinâmico ---
-if 'current_page' not in st.session_state:
-    st.session_state.current_page = "home"
-
-if st.session_state.current_page == "home":
-    pass # Não mostra nada
-
-# MUDANÇA: Conteúdo da primeira "página"
-elif st.session_state.current_page == "detalhes":
-    st.markdown('<div class="content-container">', unsafe_allow_html=True) # Wrapper para animação
-    st.markdown("<h3 style='text-align: center; color: #00FFFF;'>Gemini Integrado ao Email</h3>", unsafe_allow_html=True)
-    
-    st.write("""
-    A integração do Gemini diretamente no seu fluxo de emails transforma a maneira como você gerencia comunicações. 
-    Ele pode resumir longas threads, rascunhar respostas complexas e organizar sua caixa de entrada de forma inteligente.
-    """)
-    
-    # Botão para ativar o modal do vídeo
-    if st.button("▶️ Assistir Demonstração"):
-        st.session_state.show_gemini_video = True
-    
-    st.markdown('</div>', unsafe_allow_html=True)
-
-
-elif st.session_state.current_page == "modulos":
-    st.markdown('<div class="content-container">', unsafe_allow_html=True) # Wrapper para animação
-    st.markdown("<h3 style='text-align: center; color: #00FFFF;'>Módulos Interativos</h3>", unsafe_allow_html=True)
-    st.write("Nesta seção, você pode adicionar funcionalidades interativas, como sliders, botões para acionar funções ou gráficos dinâmicos.")
-    valor = st.slider("Selecione um valor:", 0, 100, 50)
-    st.write(f"Você selecionou: {valor}")
-    st.markdown('</div>', unsafe_allow_html=True)
-
-
-elif st.session_state.current_page == "configuracoes":
-    st.markdown('<div class="content-container">', unsafe_allow_html=True) # Wrapper para animação
-    st.markdown("<h3 style='text-align: center; color: #00FFFF;'>Configurações Avançadas</h3>", unsafe_allow_html=True)
-    st.write("Área para definir parâmetros, opções ou visualizar status do sistema.")
-    st.checkbox("Habilitar modo escuro (já está, mas é um exemplo!)")
-    st.markdown('</div>', unsafe_allow_html=True)
-
-
-# --- LÓGICA DO MODAL DE VÍDEO (NOVO) ---
-# Isso roda no final, e só aparece se a session_state for True
-if st.session_state.get("show_gemini_video", False):
-    st.markdown(
-        f"""
-        <div class="video-modal-overlay">
-            <div class="video-modal-content">
-                <p style="text-align: center; font-size: 1.5em; color: white;">Demonstração: Gemini no Email</p>
-            """, 
-        unsafe_allow_html=True
-    )
-    
-    st.video("https://www.youtube.com/watch?v=SSdJ-Oa_n-c") # Vídeo de exemplo
-    
-    if st.button("Fechar ❌"):
-        st.session_state.show_gemini_video = False
-        st.rerun() # Força o app a redesenhar sem o modal
-    
-    st.markdown("</div></div>", unsafe_allow_html=True)
+# MUDANÇA: Toda a lógica de "if current_page ==" e "modal" foi REMOVIDA daqui.
+# Este arquivo agora é SÓ a página inicial.
