@@ -23,7 +23,6 @@ st.markdown("<h1 style='text-align: center; color: white;'>Gemini - Utilizando a
 st.markdown('<div class="content-container">', unsafe_allow_html=True)
 
 # 3. Botão para voltar para a página principal
-# MUDANÇA: CORRIGIDO AQUI
 if st.button("⬅️ Voltar ao Início"):
     st.switch_page("app") # Comando para navegar para a página principal (app.py)
 
