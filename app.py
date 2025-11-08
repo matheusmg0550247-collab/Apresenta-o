@@ -4,8 +4,7 @@ from pathlib import Path
 
 # --- Configurações de Página e Caminhos ---
 THIS_DIR = Path(__file__).parent
-# MUDANÇA "TERRA ARRASADA" AQUI:
-CSS_FILE = THIS_DIR / "static" / "style_v3.css" 
+CSS_FILE = THIS_DIR / "static" / "style_v3.css"
 VIDEO_FILE = THIS_DIR / "static" / "Computador.mp4" 
 
 st.set_page_config(
@@ -73,7 +72,8 @@ with col_texto:
 st.markdown('<div class="button-container">', unsafe_allow_html=True)
 menu_cols = st.columns(3)
 
-if menu_cols[0].button("Apresentação Detalhada"):
+# MUDANÇA: Texto do botão alterado
+if menu_cols[0].button("Gemini no Email"):
     st.session_state.current_page = "detalhes"
 
 if menu_cols[1].button("Módulos Interativos"):
@@ -83,6 +83,7 @@ if menu_cols[2].button("Configurações Avançadas"):
     st.session_state.current_page = "configuracoes"
 st.markdown('</div>', unsafe_allow_html=True)
 
+
 # --- Área de Conteúdo Dinâmico ---
 if 'current_page' not in st.session_state:
     st.session_state.current_page = "home"
@@ -90,18 +91,56 @@ if 'current_page' not in st.session_state:
 if st.session_state.current_page == "home":
     pass # Não mostra nada
 
+# MUDANÇA: Conteúdo da primeira "página"
 elif st.session_state.current_page == "detalhes":
-    st.markdown("<h3 style='text-align: center; color: #00FFFF;'>Seção de Detalhes da Apresentação</h3>", unsafe_allow_html=True)
-    st.write("Aqui você pode colocar gráficos, textos e informações aprofundadas sobre o seu projeto.")
-    st.info("Informação importante sobre a apresentação.")
+    st.markdown('<div class="content-container">', unsafe_allow_html=True) # Wrapper para animação
+    st.markdown("<h3 style='text-align: center; color: #00FFFF;'>Gemini Integrado ao Email</h3>", unsafe_allow_html=True)
+    
+    st.write("""
+    A integração do Gemini diretamente no seu fluxo de emails transforma a maneira como você gerencia comunicações. 
+    Ele pode resumir longas threads, rascunhar respostas complexas e organizar sua caixa de entrada de forma inteligente.
+    """)
+    
+    # Botão para ativar o modal do vídeo
+    if st.button("▶️ Assistir Demonstração"):
+        st.session_state.show_gemini_video = True
+    
+    st.markdown('</div>', unsafe_allow_html=True)
+
 
 elif st.session_state.current_page == "modulos":
+    st.markdown('<div class="content-container">', unsafe_allow_html=True) # Wrapper para animação
     st.markdown("<h3 style='text-align: center; color: #00FFFF;'>Módulos Interativos</h3>", unsafe_allow_html=True)
     st.write("Nesta seção, você pode adicionar funcionalidades interativas, como sliders, botões para acionar funções ou gráficos dinâmicos.")
     valor = st.slider("Selecione um valor:", 0, 100, 50)
     st.write(f"Você selecionou: {valor}")
+    st.markdown('</div>', unsafe_allow_html=True)
+
 
 elif st.session_state.current_page == "configuracoes":
+    st.markdown('<div class="content-container">', unsafe_allow_html=True) # Wrapper para animação
     st.markdown("<h3 style='text-align: center; color: #00FFFF;'>Configurações Avançadas</h3>", unsafe_allow_html=True)
     st.write("Área para definir parâmetros, opções ou visualizar status do sistema.")
     st.checkbox("Habilitar modo escuro (já está, mas é um exemplo!)")
+    st.markdown('</div>', unsafe_allow_html=True)
+
+
+# --- LÓGICA DO MODAL DE VÍDEO (NOVO) ---
+# Isso roda no final, e só aparece se a session_state for True
+if st.session_state.get("show_gemini_video", False):
+    st.markdown(
+        f"""
+        <div class="video-modal-overlay">
+            <div class="video-modal-content">
+                <p style="text-align: center; font-size: 1.5em; color: white;">Demonstração: Gemini no Email</p>
+            """, 
+        unsafe_allow_html=True
+    )
+    
+    st.video("https://www.youtube.com/watch?v=SSdJ-Oa_n-c") # Vídeo de exemplo
+    
+    if st.button("Fechar ❌"):
+        st.session_state.show_gemini_video = False
+        st.rerun() # Força o app a redesenhar sem o modal
+    
+    st.markdown("</div></div>", unsafe_allow_html=True)
