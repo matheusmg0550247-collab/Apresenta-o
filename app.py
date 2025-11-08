@@ -73,14 +73,14 @@ menu_cols = st.columns(3)
 
 # MUDANÇA: CORRIGIDO AQUI
 if menu_cols[0].button("Gemini no Email"):
-    st.switch_page("Gemini_Email")
+    st.switch_page("gemini")
 
 if menu_cols[1].button("Módulos Interativos"):
     st.warning("Página 'Módulos' ainda não criada.")
-    # st.switch_page("Modulos") # (Quando você criar o arquivo)
+    # st.switch_page("modulos") # (Quando você criar o arquivo)
 
 if menu_cols[2].button("Configurações Avançadas"):
     st.warning("Página 'Configurações' ainda não criada.")
-    # st.switch_page("Configuracoes") # (Quando você criar o arquivo)
+    # st.switch_page("configuracoes") # (Quando você criar o arquivo)
 
 st.markdown('</div>', unsafe_allow_html=True)
