@@ -4,7 +4,8 @@ from pathlib import Path
 
 # --- Configurações de Página e Caminhos ---
 THIS_DIR = Path(__file__).parent
-CSS_FILE = THIS_DIR / "static" / "style.css"
+# MUDANÇA "TERRA ARRASADA" AQUI:
+CSS_FILE = THIS_DIR / "static" / "style_v3.css" 
 VIDEO_FILE = THIS_DIR / "static" / "Computador.mp4" 
 
 st.set_page_config(
