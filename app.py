@@ -41,8 +41,8 @@ def get_video_as_base64(video_file):
 st.markdown("<h1 style='text-align: center; color: white;'>🧠💻 Integrando a IA e programas do convênio Google no dia a dia dos cartórios 🌐</h1>", unsafe_allow_html=True)
 
 # --- Layout Principal (Vídeo na Esquerda, Texto na Direita) ---
-# MUDANÇA: 'gap' de "large" para "medium" para trazer o texto para a esquerda
-col_media, col_texto = st.columns([3, 2], gap="medium")
+# MUDANÇA: 'gap' de "large" para "small" para trazer o texto para a esquerda
+col_media, col_texto = st.columns([3, 2], gap="small")
 
 with col_media:
     # --- VÍDEO ---
@@ -70,7 +70,8 @@ with col_texto:
     st.markdown(texto_para_animar, unsafe_allow_html=True)
 
 # --- Menus "Giratórios" (Botões Estilizados) ---
-# MUDANÇA: Título "Navegação Rápida" foi REMOVIDO daqui
+# MUDANÇA: Adicionado um wrapper div para controlar a posição dos botões
+st.markdown('<div class="button-container">', unsafe_allow_html=True)
 menu_cols = st.columns(3)
 
 if menu_cols[0].button("Apresentação Detalhada"):
@@ -81,6 +82,7 @@ if menu_cols[1].button("Módulos Interativos"):
 
 if menu_cols[2].button("Configurações Avançadas"):
     st.session_state.current_page = "configuracoes"
+st.markdown('</div>', unsafe_allow_html=True)
 
 # --- Área de Conteúdo Dinâmico ---
 if 'current_page' not in st.session_state:
