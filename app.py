@@ -41,7 +41,6 @@ def get_video_as_base64(video_file):
 st.markdown("<h1 style='text-align: center; color: white;'>🧠💻 Integrando a IA e programas do convênio Google no dia a dia dos cartórios 🌐</h1>", unsafe_allow_html=True)
 
 # --- Layout Principal (Vídeo na Esquerda, Texto na Direita) ---
-# MUDANÇA: 'gap' de "large" para "small" para trazer o texto para a esquerda
 col_media, col_texto = st.columns([3, 2], gap="small")
 
 with col_media:
@@ -70,7 +69,6 @@ with col_texto:
     st.markdown(texto_para_animar, unsafe_allow_html=True)
 
 # --- Menus "Giratórios" (Botões Estilizados) ---
-# MUDANÇA: Adicionado um wrapper div para controlar a posição dos botões
 st.markdown('<div class="button-container">', unsafe_allow_html=True)
 menu_cols = st.columns(3)
 
@@ -90,6 +88,8 @@ if 'current_page' not in st.session_state:
 
 if st.session_state.current_page == "home":
     pass # Não mostra nada
+
+# ... (o resto do seu app.py continua igual) ...
 
 elif st.session_state.current_page == "detalhes":
     st.markdown("<h3 style='text-align: center; color: #00FFFF;'>Seção de Detalhes da Apresentação</h3>", unsafe_allow_html=True)
