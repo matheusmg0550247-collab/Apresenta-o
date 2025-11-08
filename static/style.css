@@ -4,7 +4,7 @@ body {
     color: white !important;
 }
 
-/* --- NOVO: Forçar layout de 100% da altura da tela --- */
+/* --- Layout 100% da altura da tela --- */
 .stApp {
     background-color: black !important;
     color: white !important;
@@ -26,21 +26,19 @@ section.main {
     flex-grow: 1;
     display: flex;
     flex-direction: column;
-    /* MUDANÇA: 'space-around' para distribuir o espaço vertical */
-    justify-content: space-around; 
+    justify-content: space-around; /* Distribui o espaço vertical */
     padding-top: 0rem !important; /* Remove espaçamento superior */
     padding-bottom: 0rem !important; /* Remove espaçamento inferior */
 }
 
-/* MUDANÇA: Títulos com margem zero para compactar */
+/* Títulos com margem zero para compactar */
 h1, h2 {
     margin-top: 0rem !important;
     margin-bottom: 0.5rem !important;
 }
 
 h1 {
-    /* MUDANÇA: Adiciona um pouco de padding para o título não colar no topo */
-    padding-top: 1rem !important;
+    padding-top: 1rem !important; /* Título não colar no topo */
 }
 
 /* Ocultar topo padrão do Streamlit */
@@ -81,24 +79,68 @@ header {
     }
 }
 
-/* --- NOVO: Classe para centralizar o texto verticalmente --- */
+/* Classe para centralizar o texto E o vídeo verticalmente */
 .flex-center-vertical {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    /* Faz o container ter a altura total do espaço da coluna */
     height: 100%; 
 }
 
-/* Classe do texto animado */
+/* Classe do texto animado (Animação LENTA com ATRASO) */
 .animated-text-right {
-    /* MUDANÇA: Duração de 4s, atraso de 1s, e 'forwards' para manter o estado final */
-    animation: fadeInRight 4s ease-out 1s forwards;
-    opacity: 0; /* Começa invisível para a animação funcionar */
+    animation: fadeInRight 4s ease-out 1s forwards; /* 4s de duração, 1s de atraso */
+    opacity: 0; /* Começa invisível */
     padding: 20px;
     font-size: 1.1em;
     color: #DDDDDD;
     text-align: left;
     border-left: 2px solid #00FFFF;
     box-shadow: -5px 0 15px -5px #00FFFF;
+}
+
+
+/* --- Quadrado Preto para Tampar o "VEO" --- */
+.video-container {
+    position: relative; /* Isso permite posicionar o quadrado sobre ele */
+    width: 100%;
+}
+
+.video-container::after {
+    content: ''; /* Necessário para o pseudo-elemento */
+    position: absolute; /* Posição absoluta EM RELAÇÃO ao pai */
+    z-index: 1000; /* Garante que fique POR CIMA do vídeo */
+    background-color: black; /* A cor do quadrado */
+
+    /* Posição (a partir do canto inferior direito) */
+    bottom: 15px; 
+    right: 30px;  
+
+    /* Tamanho do quadrado */
+    width: 70px;  
+    height: 40px; 
+}
+
+
+/* --- NOVO: Animação "Corrente de Energia" --- */
+
+/* Keyframes para o pulso de energia */
+@keyframes energyPulse {
+    0%   { 
+        color: #00FFFF; /* Cor Ciano (neon) */
+        text-shadow: 0 0 5px #00FFFF; 
+    }
+    50%  { 
+        color: #FFFFFF; /* Cor Branca (brilho máximo) */
+        text-shadow: 0 0 15px #FFFFFF, 0 0 5px #FFFFFF; 
+    }
+    100% { 
+        color: #00FFFF; /* Volta ao Ciano */
+        text-shadow: 0 0 5px #00FFFF; 
+    }
+}
+
+/* Aplica a animação de pulso às tags <b> DENTRO do texto animado */
+.animated-text-right b {
+    animation: energyPulse 2.5s infinite linear; /* Loop de 2.5s, infinito */
 }
