@@ -47,6 +47,12 @@ header {
     height: 0;
 }
 
+/* --- NOVO: Força a centralização vertical de TUDO dentro das colunas --- */
+[data-testid="stVerticalBlock"] {
+    justify-content: center !important;
+}
+
+
 /* Estilo para os botões do menu */
 .stButton>button {
     background-color: #333333;
@@ -79,13 +85,7 @@ header {
     }
 }
 
-/* Classe para centralizar o texto E o vídeo verticalmente */
-.flex-center-vertical {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    height: 100%; 
-}
+/* MUDANÇA: Regra .flex-center-vertical foi REMOVIDA daqui */
 
 /* Classe do texto animado (Animação LENTA com ATRASO) */
 .animated-text-right {
@@ -122,9 +122,7 @@ header {
 }
 
 
-/* --- NOVO: Animação "Corrente de Energia" --- */
-
-/* Keyframes para o pulso de energia */
+/* --- Animação "Corrente de Energia" --- */
 @keyframes energyPulse {
     0%   { 
         color: #00FFFF; /* Cor Ciano (neon) */
