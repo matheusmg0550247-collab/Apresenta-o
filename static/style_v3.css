@@ -1,0 +1,154 @@
+/* Fundo preto para toda a aplicação */
+body {
+    background-color: black !important;
+    color: white !important;
+}
+
+/* --- Layout 100% da altura da tela --- */
+.stApp {
+    background-color: black !important;
+    color: white !important;
+    height: 100vh !important; /* Altura total da tela */
+    display: flex !important;
+    flex-direction: column !important;
+    overflow: hidden !important; /* Esconde a barra de rolagem */
+}
+
+/* Ajusta a seção principal para crescer */
+section.main {
+    flex-grow: 1 !important;
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+/* Ajusta o container do conteúdo para ser flexível e mais compacto */
+.main .block-container {
+    flex-grow: 1 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important; /* FORÇADO */
+    padding-top: 0rem !important; 
+    padding-bottom: 0rem !important; 
+}
+
+/* Títulos com margem zero para compactar */
+h1, h2 {
+    margin-top: 0rem !important;
+    margin-bottom: 0.5rem !important;
+}
+
+h1 {
+    padding-top: 1rem !important; /* Título não colar no topo */
+}
+
+/* Ocultar topo padrão do Streamlit */
+header {
+    visibility: hidden !important;
+    height: 0 !important;
+}
+
+/* Força a centralização vertical de TUDO dentro das colunas */
+[data-testid="stVerticalBlock"] {
+    justify-content: center !important;
+}
+
+/* --- FORÇA o espaço entre o vídeo e o texto (Traz texto para esquerda) --- */
+section.main > div > [data-testid="stHorizontalBlock"] {
+    gap: 0.5rem !important; /* BEM PEQUENO */
+}
+
+/* Estilo para os botões do menu */
+.stButton>button {
+    background-color: #333333;
+    color: white;
+    border: 2px solid #00FFFF;
+    border-radius: 12px;
+    padding: 10px 20px;
+    font-size: 18px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 10px #00FFFF, 0 0 20px #00FFFF;
+}
+
+.stButton>button:hover {
+    background-color: #00FFFF;
+    color: black;
+    box-shadow: 0 0 15px #00FFFF, 0 0 25px #00FFFF, 0 0 35px #00FFFF;
+    transform: translateY(-2px);
+}
+
+/* --- Animação de fade-in (Direita) --- */
+@keyframes fadeInRight {
+    from {
+        opacity: 0;
+        transform: translateX(25px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Classe do texto animado (Animação LENTA com ATRASO) */
+.animated-text-right {
+    animation: fadeInRight 4s ease-out 1s forwards !important;
+    opacity: 0 !important; 
+    padding: 20px !important;
+    font-size: 1.4em !important; /* FORÇADO (Texto Maior) */
+    color: #DDDDDD !important;
+    text-align: left !important;
+    border-left: 2px solid #00FFFF !important;
+    box-shadow: -5px 0 15px -5px #00FFFF !important;
+}
+
+/* --- Container dos Botões (FORÇA ELES PARA BAIXO) --- */
+.button-container {
+    margin-top: auto !important; /* FORÇADO (Descer botões) */
+    padding-bottom: 2rem !important; 
+}
+
+/* --- FORÇA o espaço ENTRE os botões --- */
+.button-container [data-testid="stHorizontalBlock"] {
+    gap: 2.5rem !important; /* FORÇADO (Espaço entre botões) */
+}
+
+/* --- Quadrado Preto para Tampar o "VEO" --- */
+.video-container {
+    position: relative !important; 
+    width: 100% !important;
+}
+
+.video-container::after {
+    content: '' !important; 
+    position: absolute !important; 
+    z-index: 1000 !important; 
+    background-color: black !important; 
+
+    /* MUDANÇA: Ajuste final para cobrir o restinho */
+    bottom: 15px !important; 
+    right: 15px !important;  
+    width: 150px !important; /* (Largo o suficiente para cobrir tudo) */
+    height: 40px !important; 
+}
+
+
+/* --- Animação "Corrente de Energia" --- */
+@keyframes energyPulse {
+    0%   { 
+        color: #00FFFF; /* Cor Ciano (neon) */
+        text-shadow: 0 0 5px #00FFFF; 
+    }
+    50%  { 
+        color: #FFFFFF; /* Cor Branca (brilho máximo) */
+        text-shadow: 0 0 15px #FFFFFF, 0 0 5px #FFFFFF; 
+    }
+    100% { 
+        color: #00FFFF; /* Volta ao Ciano */
+        text-shadow: 0 0 5px #00FFFF; 
+    }
+}
+
+/* Aplica a animação de pulso às tags <b> DENTRO do texto animado */
+.animated-text-right b {
+    animation: energyPulse 2.5s infinite linear; /* Loop de 2.5s, infinito */
+}
