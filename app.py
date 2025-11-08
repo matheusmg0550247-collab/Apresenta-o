@@ -44,7 +44,7 @@ st.markdown("<h1 style='text-align: center; color: white;'>🧠💻 Integrando a
 col_media, col_texto = st.columns([3, 2], gap="large")
 
 with col_media:
-    # --- VÍDEO NO LUGAR DA IMAGEM ---
+    # --- VÍDEO ---
     video_b64 = get_video_as_base64(VIDEO_FILE)
     if video_b64:
         video_html = f"""
@@ -57,11 +57,14 @@ with col_media:
 
 with col_texto:
     # --- TEXTO ANIMADO (LADO DIREITO) ---
+    # MUDANÇA: Adicionado o wrapper <div class="flex-center-vertical">
     texto_para_animar = """
-    <div class="animated-text-right">
-        <p>A rotina de um cartório é marcada por um <b>alto volume de informações</b>, processos repetitivos e a necessidade de <b>precisão absoluta</b>.</p>
-        <p>No entanto, a era digital oferece uma oportunidade sem precedentes para transformar essa realidade.</p>
-        <p>Ao integrar a <b>inteligência artificial (IA)</b> e as <b>ferramentas do Google</b> no dia a dia, os cartórios podem não apenas otimizar suas atividades, mas também revolucionar a forma como operam.</p>
+    <div class="flex-center-vertical">
+        <div class="animated-text-right">
+            <p>A rotina de um cartório é marcada por um <b>alto volume de informações</b>, processos repetitivos e a necessidade de <b>precisão absoluta</b>.</p>
+            <p>No entanto, a era digital oferece uma oportunidade sem precedentes para transformar essa realidade.</p>
+            <p>Ao integrar a <b>inteligência artificial (IA)</b> e as <b>ferramentas do Google</b> no dia a dia, os cartórios podem não apenas otimizar suas atividades, mas também revolucionar a forma como operam.</p>
+        </div>
     </div>
     """
     st.markdown(texto_para_animar, unsafe_allow_html=True)
@@ -81,12 +84,11 @@ if menu_cols[2].button("Configurações Avançadas"):
     st.session_state.current_page = "configuracoes"
 
 # --- Área de Conteúdo Dinâmico ---
-# MUDANÇA: Separadores --- e <br> removidos para economizar espaço
 if 'current_page' not in st.session_state:
     st.session_state.current_page = "home"
 
 if st.session_state.current_page == "home":
-    st.markdown("<h3 style='text-align: center; color: #00FFFF;'>Bem-vindo ao Sistema!</h3>", unsafe_allow_html=True)
+    st.markdown("<h3 style='text-al'ign: center; color: #00FFFF;'>Bem-vindo ao Sistema!</h3>", unsafe_allow_html=True)
     st.write("Esta é a sua tela inicial. Explore as opções acima!")
 
 elif st.session_state.current_page == "detalhes":
@@ -97,7 +99,7 @@ elif st.session_state.current_page == "detalhes":
 elif st.session_state.current_page == "modulos":
     st.markdown("<h3 style='text-align: center; color: #00FFFF;'>Módulos Interativos</h3>", unsafe_allow_html=True)
     st.write("Nesta seção, você pode adicionar funcionalidades interativas, como sliders, botões para acionar funções ou gráficos dinâmicos.")
-    valor = st.slider("Selecione um valor:", 0, 100, 50)
+    valor = st.slider("Seleci'one um valor:", 0, 100, 50)
     st.write(f"Você selecionou: {valor}")
 
 elif st.session_state.current_page == "configuracoes":
