@@ -8,10 +8,10 @@ body {
 .stApp {
     background-color: black !important;
     color: white !important;
-    height: 100vh !important; /* Altura total da tela */
+    height: 100vh !important;
     display: flex !important;
     flex-direction: column !important;
-    overflow: hidden !important; /* Esconde a barra de rolagem */
+    overflow: hidden !important;
 }
 
 /* Ajusta a seção principal para crescer */
@@ -26,7 +26,7 @@ section.main {
     flex-grow: 1 !important;
     display: flex !important;
     flex-direction: column !important;
-    justify-content: space-between !important; /* FORÇADO */
+    justify-content: space-between !important;
     padding-top: 0rem !important; 
     padding-bottom: 0rem !important; 
 }
@@ -38,7 +38,7 @@ h1, h2 {
 }
 
 h1 {
-    padding-top: 1rem !important; /* Título não colar no topo */
+    padding-top: 1rem !important;
 }
 
 /* Ocultar topo padrão do Streamlit */
@@ -52,9 +52,9 @@ header {
     justify-content: center !important;
 }
 
-/* --- FORÇA o espaço entre o vídeo e o texto (Traz texto para esquerda) --- */
+/* --- FORÇA o espaço entre o vídeo e o texto --- */
 section.main > div > [data-testid="stHorizontalBlock"] {
-    gap: 0.5rem !important; /* BEM PEQUENO */
+    gap: 0.5rem !important;
 }
 
 /* Estilo para os botões do menu */
@@ -83,11 +83,11 @@ section.main > div > [data-testid="stHorizontalBlock"] {
     to { opacity: 1; transform: translateX(0); }
 }
 
-/* Classe do texto animado (Animação LENTA com ATRASO) */
+/* Classe do texto animado */
 .animated-text-right {
     animation: fadeInRight 4s ease-out 1s forwards !important;
     padding: 20px !important;
-    font-size: 1.6em !important; /* Fonte aumentada */
+    font-size: 1.6em !important; 
     color: #DDDDDD !important;
     text-align: left !important;
     border-left: 2px solid #00FFFF !important;
@@ -96,13 +96,13 @@ section.main > div > [data-testid="stHorizontalBlock"] {
 
 /* --- Container dos Botões (FORÇA ELES PARA BAIXO) --- */
 .button-container {
-    margin-top: auto !important; /* FORÇADO (Descer botões) */
+    margin-top: auto !important; 
     padding-bottom: 2rem !important; 
 }
 
 /* --- FORÇA o espaço ENTRE os botões --- */
 .button-container [data-testid="stHorizontalBlock"] {
-    gap: 2.5rem !important; /* FORÇADO (Espaço entre botões) */
+    gap: 2.5rem !important;
 }
 
 /* --- Quadrado Preto para Tampar o "VEO" --- */
@@ -135,22 +135,41 @@ section.main > div > [data-testid="stHorizontalBlock"] {
 }
 
 
-/* --- 
---- "Transição Bacana" para o conteúdo 
---- 
-*/
+/* --- "Transição Bacana" para o conteúdo --- */
 @keyframes contentFadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(10px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
 }
-
-/* MUDANÇA: O nome da classe de animação que usamos no app.py */
 .content-container {
     animation: contentFadeIn 0.5s ease-out; /* Meio segundo de fade-in */
+}
+
+
+/* --- 
+--- NOVO: Player de Vídeo Futurista 
+--- 
+*/
+.futuristic-player {
+    /* A imagem de fundo é a moldura */
+    background-image: url('static/frame_futurista.png'); 
+    background-size: contain; /* Garante que a moldura inteira apareça */
+    background-position: center;
+    background-repeat: no-repeat;
+    
+    /* O "padding" empurra o vídeo para dentro da moldura */
+    /* Você talvez precise ajustar esses valores! */
+    padding: 10% 12%; /* 10% de preenchimento em cima/baixo, 12% nos lados */
+    
+    /* Centraliza o player */
+    margin: 0 auto;
+    max-width: 1000px; /* Limita o tamanho máximo */
+}
+
+/* Garante que o vídeo preencha o espaço do padding */
+.futuristic-player iframe,
+.futuristic-player video {
+    width: 100% !important;
+    height: 100% !important;
+    border-radius: 10px; /* Bordas arredondadas para o vídeo */
+    border: 1px solid #00FFFF; /* Borda neon sutil no vídeo */
 }
