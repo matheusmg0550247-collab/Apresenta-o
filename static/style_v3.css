@@ -64,7 +64,7 @@ section.main > div > [data-testid="stHorizontalBlock"] {
     border: 2px solid #00FFFF;
     border-radius: 12px;
     padding: 10px 20px;
-    font-size: 18px;
+    font-size: 22px !important; /* MUDANÇA: Fonte aumentada */
     font-weight: bold;
     transition: all 0.3s ease;
     box-shadow: 0 0 10px #00FFFF, 0 0 20px #00FFFF;
@@ -77,24 +77,17 @@ section.main > div > [data-testid="stHorizontalBlock"] {
     transform: translateY(-2px);
 }
 
-/* --- Animação de fade-in (Direita) --- */
+/* --- Animação de fade-in (Direita) */
 @keyframes fadeInRight {
-    from {
-        opacity: 0;
-        transform: translateX(25px);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
+    from { opacity: 0; transform: translateX(25px); }
+    to { opacity: 1; transform: translateX(0); }
 }
 
 /* Classe do texto animado (Animação LENTA com ATRASO) */
 .animated-text-right {
     animation: fadeInRight 4s ease-out 1s forwards !important;
-    /* MUDANÇA: LINHA "OPACITY: 0" REMOVIDA DAQUI */
     padding: 20px !important;
-    font-size: 1.6em !important; /* MUDANÇA: Fonte aumentada */
+    font-size: 1.6em !important; /* Fonte aumentada */
     color: #DDDDDD !important;
     text-align: left !important;
     border-left: 2px solid #00FFFF !important;
@@ -123,8 +116,6 @@ section.main > div > [data-testid="stHorizontalBlock"] {
     position: absolute !important; 
     z-index: 1000 !important; 
     background-color: black !important; 
-
-    /* Posição e tamanho para cobrir o "VEO" */
     bottom: 15px !important; 
     right: 15px !important;  
     width: 150px !important; 
@@ -134,21 +125,78 @@ section.main > div > [data-testid="stHorizontalBlock"] {
 
 /* --- Animação "Corrente de Energia" --- */
 @keyframes energyPulse {
-    0%   { 
-        color: #00FFFF; /* Cor Ciano (neon) */
-        text-shadow: 0 0 5px #00FFFF; 
+    0%   { color: #00FFFF; text-shadow: 0 0 5px #00FFFF; }
+    50%  { color: #FFFFFF; text-shadow: 0 0 15px #FFFFFF, 0 0 5px #FFFFFF; }
+    100% { color: #00FFFF; text-shadow: 0 0 5px #00FFFF; }
+}
+
+.animated-text-right b {
+    animation: energyPulse 2.5s infinite linear;
+}
+
+
+/* --- 
+--- NOVO: "Transição Bacana" para o conteúdo 
+--- 
+*/
+@keyframes contentFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
     }
-    50%  { 
-        color: #FFFFFF; /* Cor Branca (brilho máximo) */
-        text-shadow: 0 0 15px #FFFFFF, 0 0 5px #FFFFFF; 
-    }
-    100% { 
-        color: #00FFFF; /* Volta ao Ciano */
-        text-shadow: 0 0 5px #00FFFF; 
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
 }
 
-/* Aplica a animação de pulso às tags <b> DENTRO do texto animado */
-.animated-text-right b {
-    animation: energyPulse 2.5s infinite linear; /* Loop de 2.5s, infinito */
+.content-container {
+    animation: contentFadeIn 0.5s ease-out; /* Meio segundo de fade-in */
+}
+
+
+/* --- 
+--- NOVO: Estilos do Modal de Vídeo 
+--- 
+*/
+
+/* O fundo escuro sobreposto */
+.video-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.85); /* Fundo preto 85% opaco */
+    z-index: 2000; /* Sobrepõe tudo */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* O container do vídeo e do botão fechar */
+.video-modal-content {
+    background-color: #111; /* Fundo do modal */
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid #00FFFF;
+    width: 80%;
+    max-width: 900px; /* Limite de largura */
+    z-index: 2001;
+}
+
+/* Estilo do botão "Fechar ❌" dentro do modal */
+.video-modal-content .stButton>button {
+    background-color: #DD0000; /* Vermelho */
+    color: white;
+    border: none;
+    font-size: 18px !important;
+    width: 100%; /* Botão ocupa a largura total */
+    margin-top: 15px;
+}
+
+.video-modal-content .stButton>button:hover {
+    background-color: #FF0000; /* Vermelho mais claro */
+    color: white;
+    transform: none;
 }
