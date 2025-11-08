@@ -47,7 +47,7 @@ header {
     height: 0;
 }
 
-/* --- NOVO: Força a centralização vertical de TUDO dentro das colunas --- */
+/* Força a centralização vertical de TUDO dentro das colunas */
 [data-testid="stVerticalBlock"] {
     justify-content: center !important;
 }
@@ -85,14 +85,12 @@ header {
     }
 }
 
-/* MUDANÇA: Regra .flex-center-vertical foi REMOVIDA daqui */
-
 /* Classe do texto animado (Animação LENTA com ATRASO) */
 .animated-text-right {
     animation: fadeInRight 4s ease-out 1s forwards; /* 4s de duração, 1s de atraso */
     opacity: 0; /* Começa invisível */
     padding: 20px;
-    font-size: 1.1em;
+    font-size: 1.25em; /* MUDANÇA: Aumentado de 1.1em */
     color: #DDDDDD;
     text-align: left;
     border-left: 2px solid #00FFFF;
@@ -112,12 +110,10 @@ header {
     z-index: 1000; /* Garante que fique POR CIMA do vídeo */
     background-color: black; /* A cor do quadrado */
 
-    /* Posição (a partir do canto inferior direito) */
+    /* MUDANÇA: Posição e tamanho ajustados */
     bottom: 15px; 
-    right: 30px;  
-
-    /* Tamanho do quadrado */
-    width: 70px;  
+    right: 20px;  /* Movido 10px para a esquerda */
+    width: 90px;  /* Aumentado 20px */
     height: 40px; 
 }
 
