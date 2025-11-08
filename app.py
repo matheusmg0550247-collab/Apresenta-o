@@ -5,9 +5,8 @@ from pathlib import Path
 # --- Configurações de Página e Caminhos ---
 THIS_DIR = Path(__file__).parent
 CSS_FILE = THIS_DIR / "static" / "style.css"
-VIDEO_FILE = THIS_DIR / "static" / "Computador.mp4" # <--- Caminho para o seu vídeo
+VIDEO_FILE = THIS_DIR / "static" / "Computador.mp4" 
 
-# MUDANÇA: Layout agora é 'wide' para caber o vídeo e o texto lado a lado
 st.set_page_config(
     page_title="IA nos Cartórios",
     layout="wide", 
@@ -24,14 +23,13 @@ def load_css(file_path):
 
 load_css(CSS_FILE)
 
-# --- Função para carregar vídeo como Base64 (mais robusto) ---
+# --- Função para carregar vídeo como Base64 ---
 def get_video_as_base64(video_file):
     try:
         with open(video_file, "rb") as f:
             data = f.read()
         return base64.b64encode(data).decode("utf-8")
     except FileNotFoundError:
-        # Se o arquivo não for encontrado, exibe um aviso claro
         st.error(f"Arquivo de vídeo não encontrado: {video_file}")
         st.warning("Por favor, faça o upload do 'Computador.mp4' para a pasta 'static' no seu GitHub.")
         return None
@@ -40,26 +38,20 @@ def get_video_as_base64(video_file):
         return None
 
 # --- TÍTULO ---
-# Título atualizado da sua apresentação
 st.markdown("<h1 style='text-align: center; color: white;'>🧠💻 Integrando a IA e programas do convênio Google no dia a dia dos cartórios 🌐</h1>", unsafe_allow_html=True)
-# O subtítulo "Selecione uma opção..." foi REMOVIDO daqui.
-
-st.markdown("<br>", unsafe_allow_html=True) # Adiciona um espaço
 
 # --- Layout Principal (Vídeo na Esquerda, Texto na Direita) ---
-col_media, col_texto = st.columns([3, 2], gap="large") # Vídeo (60%), Texto (40%)
+col_media, col_texto = st.columns([3, 2], gap="large")
 
 with col_media:
     # --- VÍDEO NO LUGAR DA IMAGEM ---
     video_b64 = get_video_as_base64(VIDEO_FILE)
     if video_b64:
-        # Usamos HTML5 para ter controle total (autoplay, loop, muted)
         video_html = f"""
         <video controlslist="nodownload" autoplay loop muted playsinline style="width: 100%; border-radius: 10px; object-fit: cover;">
             <source src="data:video/mp4;base64,{video_b64}" type="video/mp4">
             Seu navegador não suporta a tag de vídeo.
         </video>
-        <p style="text-align: center; color: #AAAAAA; font-style: italic;">Sistema Principal</p>
         """
         st.markdown(video_html, unsafe_allow_html=True)
 
@@ -73,10 +65,6 @@ with col_texto:
     </div>
     """
     st.markdown(texto_para_animar, unsafe_allow_html=True)
-
-
-st.markdown("<br>", unsafe_allow_html=True) # Adiciona um espaço
-st.markdown("---") # Separador visual
 
 # --- Menus "Giratórios" (Botões Estilizados) ---
 st.markdown("<h2 style='text-align: center; color: white;'>Navegação Rápida</h2>", unsafe_allow_html=True)
@@ -92,9 +80,8 @@ if menu_cols[1].button("Módulos Interativos"):
 if menu_cols[2].button("Configurações Avançadas"):
     st.session_state.current_page = "configuracoes"
 
-st.markdown("---") # Separador visual
-
-# --- Área de Conteúdo Dinâmico (permanece igual) ---
+# --- Área de Conteúdo Dinâmico ---
+# MUDANÇA: Separadores --- e <br> removidos para economizar espaço
 if 'current_page' not in st.session_state:
     st.session_state.current_page = "home"
 
