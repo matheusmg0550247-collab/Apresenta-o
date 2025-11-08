@@ -26,7 +26,7 @@ section.main {
     flex-grow: 1;
     display: flex;
     flex-direction: column;
-    justify-content: space-around; /* Distribui o espaço vertical */
+    justify-content: space-between; /* MUDANÇA: de space-around */
     padding-top: 0rem !important; /* Remove espaçamento superior */
     padding-bottom: 0rem !important; /* Remove espaçamento inferior */
 }
@@ -90,13 +90,18 @@ header {
     animation: fadeInRight 4s ease-out 1s forwards; /* 4s de duração, 1s de atraso */
     opacity: 0; /* Começa invisível */
     padding: 20px;
-    font-size: 1.25em; /* MUDANÇA: Aumentado de 1.1em */
+    font-size: 1.3em; /* MUDANÇA: Aumentado de 1.25em */
     color: #DDDDDD;
     text-align: left;
     border-left: 2px solid #00FFFF;
     box-shadow: -5px 0 15px -5px #00FFFF;
 }
 
+/* --- NOVO: Container dos Botões --- */
+.button-container {
+    margin-top: auto; /* Força os botões para o final do container flexível */
+    padding-bottom: 2rem; /* Um respiro da borda inferior */
+}
 
 /* --- Quadrado Preto para Tampar o "VEO" --- */
 .video-container {
@@ -112,8 +117,8 @@ header {
 
     /* MUDANÇA: Posição e tamanho ajustados */
     bottom: 15px; 
-    right: 20px;  /* Movido 10px para a esquerda */
-    width: 90px;  /* Aumentado 20px */
+    right: 25px;  /* Movido mais para a esquerda */
+    width: 110px; /* Aumentado */
     height: 40px; 
 }
 
