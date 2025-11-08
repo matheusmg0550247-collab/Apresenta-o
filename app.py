@@ -47,17 +47,19 @@ with col_media:
     # --- VÍDEO ---
     video_b64 = get_video_as_base64(VIDEO_FILE)
     if video_b64:
+        # MUDANÇA: Adicionada a classe 'flex-center-vertical' para centralizar o vídeo
         video_html = f"""
-        <video controlslist="nodownload" autoplay loop muted playsinline style="width: 100%; border-radius: 10px; object-fit: cover;">
-            <source src="data:video/mp4;base64,{video_b64}" type="video/mp4">
-            Seu navegador não suporta a tag de vídeo.
-        </video>
+        <div class="video-container flex-center-vertical">
+            <video controlslist="nodownload" autoplay loop muted playsinline style="width: 100%; border-radius: 10px; object-fit: cover;">
+                <source src="data:video/mp4;base64,{video_b64}" type="video/mp4">
+                Seu navegador não suporta a tag de vídeo.
+            </video>
+        </div>
         """
         st.markdown(video_html, unsafe_allow_html=True)
 
 with col_texto:
     # --- TEXTO ANIMADO (LADO DIREITO) ---
-    # MUDANÇA: Adicionado o wrapper <div class="flex-center-vertical">
     texto_para_animar = """
     <div class="flex-center-vertical">
         <div class="animated-text-right">
@@ -88,7 +90,7 @@ if 'current_page' not in st.session_state:
     st.session_state.current_page = "home"
 
 if st.session_state.current_page == "home":
-    st.markdown("<h3 style='text-al'ign: center; color: #00FFFF;'>Bem-vindo ao Sistema!</h3>", unsafe_allow_html=True)
+    st.markdown("<h3 style='text-align: center; color: #00FFFF;'>Bem-vindo ao Sistema!</h3>", unsafe_allow_html=True)
     st.write("Esta é a sua tela inicial. Explore as opções acima!")
 
 elif st.session_state.current_page == "detalhes":
@@ -99,7 +101,7 @@ elif st.session_state.current_page == "detalhes":
 elif st.session_state.current_page == "modulos":
     st.markdown("<h3 style='text-align: center; color: #00FFFF;'>Módulos Interativos</h3>", unsafe_allow_html=True)
     st.write("Nesta seção, você pode adicionar funcionalidades interativas, como sliders, botões para acionar funções ou gráficos dinâmicos.")
-    valor = st.slider("Seleci'one um valor:", 0, 100, 50)
+    valor = st.slider("Selecione um valor:", 0, 100, 50)
     st.write(f"Você selecionou: {valor}")
 
 elif st.session_state.current_page == "configuracoes":
