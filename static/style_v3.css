@@ -92,9 +92,9 @@ section.main > div > [data-testid="stHorizontalBlock"] {
 /* Classe do texto animado (Animação LENTA com ATRASO) */
 .animated-text-right {
     animation: fadeInRight 4s ease-out 1s forwards !important;
-    opacity: 0 !important; 
+    /* MUDANÇA: LINHA "OPACITY: 0" REMOVIDA DAQUI */
     padding: 20px !important;
-    font-size: 1.4em !important; /* FORÇADO (Texto Maior) */
+    font-size: 1.6em !important; /* MUDANÇA: Fonte aumentada */
     color: #DDDDDD !important;
     text-align: left !important;
     border-left: 2px solid #00FFFF !important;
@@ -124,10 +124,10 @@ section.main > div > [data-testid="stHorizontalBlock"] {
     z-index: 1000 !important; 
     background-color: black !important; 
 
-    /* MUDANÇA: Ajuste final para cobrir o restinho */
+    /* Posição e tamanho para cobrir o "VEO" */
     bottom: 15px !important; 
     right: 15px !important;  
-    width: 150px !important; /* (Largo o suficiente para cobrir tudo) */
+    width: 150px !important; 
     height: 40px !important; 
 }
 
