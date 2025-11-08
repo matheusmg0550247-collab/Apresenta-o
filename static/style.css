@@ -42,3 +42,27 @@ header {
     flex-direction: column;
     align-items: center;
     text-align: center;
+    /* --- Adições para Animação e Layout --- */
+
+/* Animação de fade-in vindo da direita */
+@keyframes fadeInRight {
+    from {
+        opacity: 0;
+        transform: translateX(25px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Classe para aplicar no texto da direita */
+.animated-text-right {
+    animation: fadeInRight 1.5s ease-out;
+    padding: 20px; /* Um respiro para o texto */
+    font-size: 1.1em; /* Tamanho da fonte um pouco maior */
+    color: #DDDDDD; /* Branco um pouco mais suave */
+    text-align: left;
+    border-left: 2px solid #00FFFF; /* Linha neon na esquerda */
+    box-shadow: -5px 0 15px -5px #00FFFF; /* Sombra neon suave */
+}
