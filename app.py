@@ -36,24 +36,17 @@ def get_video_as_base64(video_file):
         st.error(f"Erro ao carregar o vídeo: {e}")
         return None
 
-# --- Controle de Página (O CÉREBRO DA SUA IDEIA) ---
+# --- Controle de Página ---
 if "page" not in st.session_state:
     st.session_state.page = "home" # Começa na 'home'
 
-# --- RENDERIZAÇÃO CONDICIONAL ---
-
 # ==========================================================
-# PÁGINA "HOME" (O que você vê primeiro)
+# PÁGINA "HOME"
 # ==========================================================
 if st.session_state.page == "home":
-    
-    # Adicionamos o wrapper de animação em TUDO
     st.markdown('<div class="content-container">', unsafe_allow_html=True) 
-
-    # --- TÍTULO ---
     st.markdown("<h1 style='text-align: center; color: white;'>🧠💻 Integrando a IA e programas do convênio Google no dia a dia dos cartórios 🌐</h1>", unsafe_allow_html=True)
 
-    # --- Layout Principal (Vídeo na Esquerda, Texto na Direita) ---
     col_media, col_texto = st.columns([3, 2], gap="small")
 
     with col_media:
@@ -78,48 +71,43 @@ if st.session_state.page == "home":
         """
         st.markdown(texto_para_animar, unsafe_allow_html=True)
 
-    # --- Menus "Giratórios" (Botões Estilizados) ---
     st.markdown('<div class="button-container">', unsafe_allow_html=True)
     menu_cols = st.columns(3)
 
     if menu_cols[0].button("Gemini no Email"):
-        st.session_state.page = "gemini" # Manda para a página 'gemini'
-        st.rerun() # Recarrega o script imediatamente
-
+        st.session_state.page = "gemini" 
+        st.rerun() 
     if menu_cols[1].button("Módulos Interativos"):
-        st.session_state.page = "modulos" # Manda para a página 'modulos'
+        st.session_state.page = "modulos" 
         st.rerun() 
-
     if menu_cols[2].button("Configurações Avançadas"):
-        st.session_state.page = "config" # Manda para a página 'config'
+        st.session_state.page = "config" 
         st.rerun() 
-
-    st.markdown('</div>', unsafe_allow_html=True) # Fim do button-container
-    st.markdown('</div>', unsafe_allow_html=True) # Fim do content-container
+    st.markdown('</div>', unsafe_allow_html=True) 
+    st.markdown('</div>', unsafe_allow_html=True) 
 
 # ==========================================================
-# PÁGINA "GEMINI NO EMAIL"
+# PÁGINA "GEMINI NO EMAIL" (MUDANÇAS PRINCIPAIS AQUI)
 # ==========================================================
 elif st.session_state.page == "gemini":
-
-    # Adicionamos o wrapper de animação em TUDO
     st.markdown('<div class="content-container">', unsafe_allow_html=True) 
 
-    # 1. O Título que você pediu
     st.markdown("<h1 style='text-align: center; color: white;'>Gemini - Utilizando a inteligência artificial nos emails</h1>", unsafe_allow_html=True)
 
-    # 2. O Botão VOLTAR que você pediu
     if st.button("⬅️ Voltar ao Início"):
-        st.session_state.page = "home" # Manda de volta para 'home'
-        st.rerun() # Recarrega o script imediatamente
-
+        st.session_state.page = "home" 
+        st.rerun() 
+        
     st.markdown("<hr>", unsafe_allow_html=True)
 
-    # 3. O resto do conteúdo (texto da direita, vídeo, etc.)
-    st.write("Aqui vai o texto da direita...")
-    if st.button("▶️ Assistir Demonstração"):
-        st.video("https://www.youtube.com/watch?v=SSdJ-Oa_n-c")
-
+    # --- NOVO: Player Futurista ---
+    st.markdown('<div class="futuristic-player">', unsafe_allow_html=True)
+    
+    # Substitua esta URL pelo caminho do seu vídeo do robô (ex: "static/robo.mp4")
+    st.video("https://www.youtube.com/watch?v=SSdJ-Oa_n-c", autoplay=True)
+    
+    st.markdown('</div>', unsafe_allow_html=True) # Fim do futuristic-player
+    
     st.markdown('</div>', unsafe_allow_html=True) # Fim do content-container
 
 # ==========================================================
