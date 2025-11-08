@@ -26,7 +26,7 @@ section.main {
     flex-grow: 1;
     display: flex;
     flex-direction: column;
-    justify-content: space-between; /* Empurra o título para cima e os botões para baixo */
+    justify-content: space-between !important; /* FORÇADO */
     padding-top: 0rem !important; 
     padding-bottom: 0rem !important; 
 }
@@ -52,9 +52,9 @@ header {
     justify-content: center !important;
 }
 
-/* --- NOVO: Força o espaço entre o vídeo e o texto --- */
+/* --- FORÇA o espaço entre o vídeo e o texto (Traz texto para esquerda) --- */
 section.main > div > [data-testid="stHorizontalBlock"] {
-    gap: 1rem !important;
+    gap: 0.5rem !important; /* BEM PEQUENO */
 }
 
 /* Estilo para os botões do menu */
@@ -91,10 +91,10 @@ section.main > div > [data-testid="stHorizontalBlock"] {
 
 /* Classe do texto animado (Animação LENTA com ATRASO) */
 .animated-text-right {
-    animation: fadeInRight 4s ease-out 1s forwards; /* 4s de duração, 1s de atraso */
-    opacity: 0; /* Começa invisível */
+    animation: fadeInRight 4s ease-out 1s forwards;
+    opacity: 0; 
     padding: 20px;
-    font-size: 1.4em; /* MUDANÇA: Aumentado de 1.3em */
+    font-size: 1.4em !important; /* FORÇADO (Texto Maior) */
     color: #DDDDDD;
     text-align: left;
     border-left: 2px solid #00FFFF;
@@ -103,32 +103,32 @@ section.main > div > [data-testid="stHorizontalBlock"] {
 
 /* --- Container dos Botões (FORÇA ELES PARA BAIXO) --- */
 .button-container {
-    margin-top: auto; /* Força os botões para o final do container flexível */
-    padding-bottom: 2rem; /* Um respiro da borda inferior */
+    margin-top: auto !important; /* FORÇADO (Descer botões) */
+    padding-bottom: 2rem !important; 
 }
 
-/* --- NOVO: Adiciona espaço ENTRE os botões --- */
+/* --- FORÇA o espaço ENTRE os botões --- */
 .button-container [data-testid="stHorizontalBlock"] {
-    gap: 2.5rem !important;
+    gap: 2.5rem !important; /* FORÇADO (Espaço entre botões) */
 }
 
 /* --- Quadrado Preto para Tampar o "VEO" --- */
 .video-container {
-    position: relative; /* Isso permite posicionar o quadrado sobre ele */
+    position: relative; 
     width: 100%;
 }
 
 .video-container::after {
-    content: ''; /* Necessário para o pseudo-elemento */
-    position: absolute; /* Posição absoluta EM RELAÇÃO ao pai */
-    z-index: 1000; /* Garante que fique POR CIMA do vídeo */
-    background-color: black; /* A cor do quadrado */
+    content: '' !important; 
+    position: absolute !important; 
+    z-index: 1000 !important; 
+    background-color: black !important; 
 
-    /* MUDANÇA: Posição e tamanho ajustados */
-    bottom: 15px; 
-    right: 20px;  /* Movido para a esquerda */
-    width: 130px; /* Aumentado */
-    height: 40px; 
+    /* MUDANÇA: Posição e tamanho ajustados (FORÇADO) */
+    bottom: 15px !important; 
+    right: 20px !important;  
+    width: 130px !important; /* (Cobre o 'evo' e o 'j') */
+    height: 40px !important; 
 }
 
 
