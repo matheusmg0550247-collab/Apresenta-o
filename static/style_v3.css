@@ -64,7 +64,7 @@ section.main > div > [data-testid="stHorizontalBlock"] {
     border: 2px solid #00FFFF;
     border-radius: 12px;
     padding: 10px 20px;
-    font-size: 22px !important; /* MUDANÇA: Fonte aumentada */
+    font-size: 22px !important; /* Fonte aumentada */
     font-weight: bold;
     transition: all 0.3s ease;
     box-shadow: 0 0 10px #00FFFF, 0 0 20px #00FFFF;
@@ -136,7 +136,7 @@ section.main > div > [data-testid="stHorizontalBlock"] {
 
 
 /* --- 
---- NOVO: "Transição Bacana" para o conteúdo 
+--- "Transição Bacana" para o conteúdo 
 --- 
 */
 @keyframes contentFadeIn {
@@ -150,54 +150,7 @@ section.main > div > [data-testid="stHorizontalBlock"] {
     }
 }
 
+/* MUDANÇA: O nome da classe de animação que usamos no app.py */
 .content-container {
     animation: contentFadeIn 0.5s ease-out; /* Meio segundo de fade-in */
 }
-
-
-/* --- 
---- NOVO: Estilos do Modal de Vídeo 
---- 
-*/
-
-/* O fundo escuro sobreposto */
-.video-modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background-color: rgba(0, 0, 0, 0.85); /* Fundo preto 85% opaco */
-    z-index: 2000; /* Sobrepõe tudo */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-/* O container do vídeo e do botão fechar */
-.video-modal-content {
-    background-color: #111; /* Fundo do modal */
-    padding: 20px;
-    border-radius: 10px;
-    border: 1px solid #00FFFF;
-    width: 80%;
-    max-width: 900px; /* Limite de largura */
-    z-index: 2001;
-}
-
-/* Estilo do botão "Fechar ❌" dentro do modal */
-.video-modal-content .stButton>button {
-    background-color: #DD0000; /* Vermelho */
-    color: white;
-    border: none;
-    font-size: 18px !important;
-    width: 100%; /* Botão ocupa a largura total */
-    margin-top: 15px;
-}
-
-.video-modal-content .stButton>button:hover {
-    background-color: #FF0000; /* Vermelho mais claro */
-    color: white;
-    transform: none;
-}
-
