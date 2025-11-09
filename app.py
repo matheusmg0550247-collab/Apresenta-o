@@ -6,9 +6,8 @@ from pathlib import Path
 THIS_DIR = Path(__file__).parent
 CSS_FILE = THIS_DIR / "static" / "style_v3.css"
 VIDEO_FILE = THIS_DIR / "static" / "Computador.mp4" 
-ROBO_FILE = THIS_DIR / "static" / "Robo.mp4" 
-# Link de download direto do Google Drive
-GEMINI_VIDEO_LINK = "https://drive.google.com/uc?id=1BCNGZ_vglK4bm1trEy3Brcu23iqkLI81" 
+ROBO_FILE = THIS_DIR / "static" / "Robo.mp4" # <--- O robô
+GEMINI_VIDEO = THIS_DIR / "static" / "Gemini.mp4" # <--- O seu novo vídeo principal
 
 st.set_page_config(
     page_title="IA nos Cartórios",
@@ -33,7 +32,8 @@ def get_video_as_base64(video_file):
             data = f.read()
         return base64.b64encode(data).decode("utf-8")
     except FileNotFoundError:
-        st.error(f"Arquivo de vídeo não encontrado: {video_file}")
+        # Este aviso é útil para nós!
+        st.warning(f"Aviso: Arquivo de vídeo não encontrado: {video_file}")
         return None
     except Exception as e:
         st.error(f"Erro ao carregar o vídeo: {e}")
@@ -112,9 +112,11 @@ elif st.session_state.page == "gemini":
         # 1. O Player Futurista
         st.markdown('<div class="futuristic-player">', unsafe_allow_html=True)
         
-        # MUDANÇA: Usando o link do GDrive e autoplay=True
-        # AVISO: Isso provavelmente não vai funcionar devido ao tamanho do arquivo (98MB)
-        st.video(GEMINI_VIDEO_LINK, autoplay=True)
+        # MUDANÇA: Usando o arquivo local static/Gemini.mp4
+        try:
+            st.video(str(GEMINI_VIDEO), autoplay=True)
+        except Exception as e:
+            st.error(f"Erro ao carregar 'Gemini.mp4'. Verifique se ele existe na pasta 'static'.")
         
         st.markdown('</div>', unsafe_allow_html=True) # Fim do futuristic-player
     
@@ -131,7 +133,8 @@ elif st.session_state.page == "gemini":
             """
             st.markdown(robo_html, unsafe_allow_html=True)
         else:
-            st.warning("Vídeo do Robô (Robo.mp4) não encontrado na pasta static/")
+            # O aviso de "não encontrado" aparecerá aqui
+            st.warning("Robo.mp4 não encontrado.")
             
         st.markdown('</div>', unsafe_allow_html=True) # Fim do robot-container
     
