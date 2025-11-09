@@ -4,9 +4,9 @@ from pathlib import Path
 
 # --- Configurações de Página e Caminhos ---
 THIS_DIR = Path(__file__).parent
-CSS_FILE = THIS_DIR / "static" / "style_v4.css" # <--- ESTA LINHA TEM QUE ESTAR ASSIM
+CSS_FILE = THIS_DIR / "static" / "style_v4.css" # Continua apontando para o V4
 VIDEO_FILE = THIS_DIR / "static" / "Computador.mp4" 
-ROBO_FILE = THIS_DIR / "static" / "Robô.mp4"
+ROBO_FILE = THIS_DIR / "static" / "Robo.mp4"
 GEMINI_VIDEO = THIS_DIR / "static" / "Gemini.mp4" 
 
 st.set_page_config(
@@ -20,6 +20,21 @@ def load_css(file_path):
     try:
         with open(file_path) as f:
             st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
+            
+        # --- SOLUÇÃO "MARRETA" ---
+        # Força a correção do espaçamento aqui, não importa o que o CSS externo diga
+        st.markdown(
+            """
+            <style>
+            .main .block-container {
+                justify-content: flex-start !important; 
+            }
+            </style>
+            """,
+            unsafe_allow_html=True
+        )
+        # --- FIM DA SOLUÇÃO "MARRETA" ---
+        
     except FileNotFoundError:
         st.error(f"Erro: Arquivo CSS não encontrado em {file_path}")
 
@@ -137,7 +152,7 @@ elif st.session_state.page == "gemini":
     
     st.markdown('</div>', unsafe_allow_html=True) # Fim do content-container
 
-# ==========================================================
+# =================================S=========================
 # PÁGINA "MÓDULOS" (Exemplo)
 # ==========================================================
 elif st.session_state.page == "modulos":
