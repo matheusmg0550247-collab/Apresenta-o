@@ -6,7 +6,7 @@ from pathlib import Path
 THIS_DIR = Path(__file__).parent
 CSS_FILE = THIS_DIR / "static" / "style_v4.css" # Continua apontando para o V4
 VIDEO_FILE = THIS_DIR / "static" / "Computador.mp4" 
-ROBO_FILE = THIS_DIR / "static" / "Robo.mp4"
+ROBO_FILE = THIS_DIR / "static" / "Robô.mp4"
 GEMINI_VIDEO = THIS_DIR / "static" / "Gemini.mp4" 
 
 st.set_page_config(
