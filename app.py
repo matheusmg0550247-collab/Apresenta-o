@@ -4,10 +4,10 @@ from pathlib import Path
 
 # --- Configurações de Página e Caminhos ---
 THIS_DIR = Path(__file__).parent
-CSS_FILE = THIS_DIR / "static" / "style_v3.css"
+CSS_FILE = THIS_DIR / "static" / "style_v4.css" # <--- MUDANÇA AQUI
 VIDEO_FILE = THIS_DIR / "static" / "Computador.mp4" 
-ROBO_FILE = THIS_DIR / "static" / "Robô.mp4" # <--- O robô
-GEMINI_VIDEO = THIS_DIR / "static" / "Gemini.mp4" # <--- O seu novo vídeo principal
+ROBO_FILE = THIS_DIR / "static" / "Robo.mp4"
+GEMINI_VIDEO = THIS_DIR / "static" / "Gemini.mp4" 
 
 st.set_page_config(
     page_title="IA nos Cartórios",
@@ -32,7 +32,6 @@ def get_video_as_base64(video_file):
             data = f.read()
         return base64.b64encode(data).decode("utf-8")
     except FileNotFoundError:
-        # Este aviso é útil para nós!
         st.warning(f"Aviso: Arquivo de vídeo não encontrado: {video_file}")
         return None
     except Exception as e:
@@ -112,7 +111,6 @@ elif st.session_state.page == "gemini":
         # 1. O Player Futurista
         st.markdown('<div class="futuristic-player">', unsafe_allow_html=True)
         
-        # MUDANÇA: Usando o arquivo local static/Gemini.mp4
         try:
             st.video(str(GEMINI_VIDEO), autoplay=True)
         except Exception as e:
@@ -133,11 +131,21 @@ elif st.session_state.page == "gemini":
             """
             st.markdown(robo_html, unsafe_allow_html=True)
         else:
-            # O aviso de "não encontrado" aparecerá aqui
             st.warning("Robo.mp4 não encontrado.")
             
         st.markdown('</div>', unsafe_allow_html=True) # Fim do robot-container
     
     st.markdown('</div>', unsafe_allow_html=True) # Fim do content-container
 
-# ... (resto do código para "modulos", etc.)
+# ==========================================================
+# PÁGINA "MÓDULOS" (Exemplo)
+# ==========================================================
+elif st.session_state.page == "modulos":
+    st.markdown('<div class="content-container">', unsafe_allow_html=True) 
+    st.markdown("<h1 style='text-align: center; color: white;'>Módulos Interativos</h1>", unsafe_allow_html=True)
+    if st.button("⬅️ Voltar ao Início"):
+        st.session_state.page = "home"
+        st.rerun()
+    st.markdown("<hr>", unsafe_allow_html=True)
+    st.slider("Exemplo de Módulo", 0, 100, 50)
+    st.markdown('</div>', unsafe_allow_html=True)
