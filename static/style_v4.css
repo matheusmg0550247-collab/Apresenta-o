@@ -148,7 +148,6 @@ section.main > div > [data-testid="stHorizontalBlock"] {
 
 /* --- Player de Vídeo Futurista --- */
 .futuristic-player {
-    /* MUDANÇA AQUI: Corrigido o caminho da imagem */
     background-image: url('frame_futurista.png'); 
     background-size: contain;
     background-position: center;
