@@ -4,7 +4,8 @@ from pathlib import Path
 
 # --- Configurações de Página e Caminhos ---
 THIS_DIR = Path(__file__).parent
-CSS_FILE = THIS_DIR / "static" / "style_v4.css" # Continua apontando para o V4
+# Continuamos usando o v4 para garantir
+CSS_FILE = THIS_DIR / "static" / "style_v4.css" 
 VIDEO_FILE = THIS_DIR / "static" / "Computador.mp4" 
 ROBO_FILE = THIS_DIR / "static" / "Robô.mp4"
 GEMINI_VIDEO = THIS_DIR / "static" / "Gemini.mp4" 
@@ -21,8 +22,7 @@ def load_css(file_path):
         with open(file_path) as f:
             st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
             
-        # --- SOLUÇÃO "MARRETA" ---
-        # Força a correção do espaçamento aqui, não importa o que o CSS externo diga
+        # --- SOLUÇÃO "MARRETA" (Garante que o bug do cache não volte) ---
         st.markdown(
             """
             <style>
@@ -33,7 +33,6 @@ def load_css(file_path):
             """,
             unsafe_allow_html=True
         )
-        # --- FIM DA SOLUÇÃO "MARRETA" ---
         
     except FileNotFoundError:
         st.error(f"Erro: Arquivo CSS não encontrado em {file_path}")
@@ -119,6 +118,11 @@ elif st.session_state.page == "gemini":
         
     st.markdown("<hr>", unsafe_allow_html=True)
 
+    # --- NOVO: O Espaçador Manual ---
+    # Altere o valor de '50px' para '100px', '20px', etc. até gostar.
+    st.markdown("<div style='height: 50px;'></div>", unsafe_allow_html=True)
+    # --- FIM DO ESPAÇADOR ---
+
     # --- Layout de 2 Colunas ---
     col_video_principal, col_robo = st.columns([3, 1]) 
 
@@ -152,7 +156,7 @@ elif st.session_state.page == "gemini":
     
     st.markdown('</div>', unsafe_allow_html=True) # Fim do content-container
 
-# =================================S=========================
+# ==========================================================
 # PÁGINA "MÓDULOS" (Exemplo)
 # ==========================================================
 elif st.session_state.page == "modulos":
