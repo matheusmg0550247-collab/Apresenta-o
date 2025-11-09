@@ -22,9 +22,9 @@ st.markdown('<div class="content-container">', unsafe_allow_html=True)
 # 1. O Título que você pediu
 st.markdown("<h1 style='text-align: center; color: white;'>Gemini - Utilizando a inteligência artificial nos emails</h1>", unsafe_allow_html=True)
 
-# 2. O Botão VOLTAR (corrigido)
+# 2. O Botão VOLTAR (CORRIGIDO)
 if st.button("⬅️ Voltar ao Início"):
-    st.switch_page("app.py") # Comando para navegar para a página principal
+    st.switch_page("app") # MUDANÇA ÉPICA AQUI
 
 st.markdown("<hr>", unsafe_allow_html=True)
 
