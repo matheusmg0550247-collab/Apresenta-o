@@ -16,23 +16,22 @@ load_css(CSS_FILE)
 
 # --- Conteúdo da Nova Página ---
 
+# Container para a "transição bacana" (fade-in)
+st.markdown('<div class="content-container">', unsafe_allow_html=True) 
+
 # 1. O Título que você pediu
 st.markdown("<h1 style='text-align: center; color: white;'>Gemini - Utilizando a inteligência artificial nos emails</h1>", unsafe_allow_html=True)
 
-# 2. Container para a "transição bacana"
-st.markdown('<div class="content-container">', unsafe_allow_html=True)
-
-# 3. Botão para voltar para a página principal
+# 2. O Botão VOLTAR (corrigido)
 if st.button("⬅️ Voltar ao Início"):
-    st.switch_page("app") # Comando para navegar para a página principal (app.py)
+    st.switch_page("app.py") # Comando para navegar para a página principal
 
 st.markdown("<hr>", unsafe_allow_html=True)
 
-# 4. Aqui podemos adicionar o resto (o texto da direita e o botão do vídeo)
-st.write("Aqui vai o texto da direita...")
-
-if st.button("▶️ Assistir Demonstração"):
-    # (A lógica do modal do vídeo virá aqui)
-    st.warning("O modal do vídeo será implementado aqui!")
-
-st.markdown('</div>', unsafe_allow_html=True)
+# 3. O Player Futurista
+st.markdown('<div class="futuristic-player">', unsafe_allow_html=True)
+# Lembre-se de trocar esta URL pelo seu vídeo (ex: "static/robo.mp4")
+st.video("https://www.youtube.com/watch?v=SSdJ-Oa_n-c", autoplay=True)
+st.markdown('</div>', unsafe_allow_html=True) # Fim do futuristic-player
+    
+st.markdown('</div>', unsafe_allow_html=True) # Fim do content-container
