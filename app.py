@@ -7,7 +7,7 @@ THIS_DIR = Path(__file__).parent
 # Continuamos usando o v4 para garantir
 CSS_FILE = THIS_DIR / "static" / "style_v4.css" 
 VIDEO_FILE = THIS_DIR / "static" / "Computador.mp4" 
-ROBO_FILE = THIS_DIR / "static" / "Robo.mp4"
+ROBO_FILE = THIS_DIR / "static" / "Robô.mp4"
 GEMINI_VIDEO = THIS_DIR / "static" / "Gemini.mp4" 
 
 st.set_page_config(
@@ -120,7 +120,7 @@ elif st.session_state.page == "gemini":
 
     # --- NOVO: O Espaçador Manual ---
     # Altere o valor de '50px' para '100px', '20px', etc. até gostar.
-    st.markdown("<div style='height: 1px;'></div>", unsafe_allow_html=True)
+    st.markdown("<div style='height: -50px;'></div>", unsafe_allow_html=True)
     # --- FIM DO ESPAÇADOR ---
 
     # --- Layout de 2 Colunas ---
