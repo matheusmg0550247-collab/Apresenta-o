@@ -6,6 +6,9 @@ from pathlib import Path
 THIS_DIR = Path(__file__).parent
 CSS_FILE = THIS_DIR / "static" / "style_v3.css"
 VIDEO_FILE = THIS_DIR / "static" / "Computador.mp4" 
+ROBO_FILE = THIS_DIR / "static" / "Robo.mp4" 
+# Link de download direto do Google Drive
+GEMINI_VIDEO_LINK = "https://drive.google.com/uc?id=1BCNGZ_vglK4bm1trEy3Brcu23iqkLI81" 
 
 st.set_page_config(
     page_title="IA nos Cartórios",
@@ -23,7 +26,7 @@ def load_css(file_path):
 
 load_css(CSS_FILE)
 
-# --- Função para carregar vídeo (só precisa ser definida uma vez) ---
+# --- Função para carregar vídeo (reutilizável) ---
 def get_video_as_base64(video_file):
     try:
         with open(video_file, "rb") as f:
@@ -36,12 +39,12 @@ def get_video_as_base64(video_file):
         st.error(f"Erro ao carregar o vídeo: {e}")
         return None
 
-# --- Controle de Página (O CÉREBRO) ---
+# --- Controle de Página ---
 if "page" not in st.session_state:
-    st.session_state.page = "home" # Começa na 'home'
+    st.session_state.page = "home" 
 
 # ==========================================================
-# PÁGINA "HOME" (O que você vê primeiro)
+# PÁGINA "HOME"
 # ==========================================================
 if st.session_state.page == "home":
     
@@ -102,24 +105,36 @@ elif st.session_state.page == "gemini":
         
     st.markdown("<hr>", unsafe_allow_html=True)
 
-    st.markdown('<div class="futuristic-player">', unsafe_allow_html=True)
-    # Lembre-se de trocar esta URL pelo seu vídeo (ex: "static/robo.mp4")
-    st.video("https://www.youtube.com/watch?v=SSdJ-Oa_n-c", autoplay=True)
-    st.markdown('</div>', unsafe_allow_html=True) # Fim do futuristic-player
+    # --- Layout de 2 Colunas ---
+    col_video_principal, col_robo = st.columns([3, 1]) 
+
+    with col_video_principal:
+        # 1. O Player Futurista
+        st.markdown('<div class="futuristic-player">', unsafe_allow_html=True)
+        
+        # MUDANÇA: Usando o link do GDrive e autoplay=True
+        # AVISO: Isso provavelmente não vai funcionar devido ao tamanho do arquivo (98MB)
+        st.video(GEMINI_VIDEO_LINK, autoplay=True)
+        
+        st.markdown('</div>', unsafe_allow_html=True) # Fim do futuristic-player
+    
+    with col_robo:
+        # 2. O Robô em Loop
+        st.markdown('<div class="robot-container">', unsafe_allow_html=True)
+        
+        robo_b64 = get_video_as_base64(ROBO_FILE)
+        if robo_b64:
+            robo_html = f"""
+            <video autoplay loop muted playsinline style="width: 100%; max-width: 250px; border-radius: 10px; border: 1px solid #00FFFF;">
+                <source src="data:video/mp4;base64,{robo_b64}" type="video/mp4">
+            </video>
+            """
+            st.markdown(robo_html, unsafe_allow_html=True)
+        else:
+            st.warning("Vídeo do Robô (Robo.mp4) não encontrado na pasta static/")
+            
+        st.markdown('</div>', unsafe_allow_html=True) # Fim do robot-container
     
     st.markdown('</div>', unsafe_allow_html=True) # Fim do content-container
 
-# ==========================================================
-# PÁGINA "MÓDULOS" (Exemplo)
-# ==========================================================
-elif st.session_state.page == "modulos":
-    st.markdown('<div class="content-container">', unsafe_allow_html=True) 
-    st.markdown("<h1 style='text-align: center; color: white;'>Módulos Interativos</h1>", unsafe_allow_html=True)
-    if st.button("⬅️ Voltar ao Início"):
-        st.session_state.page = "home"
-        st.rerun()
-    st.markdown("<hr>", unsafe_allow_html=True)
-    st.slider("Exemplo de Módulo", 0, 100, 50)
-    st.markdown('</div>', unsafe_allow_html=True)
-
-# ... (e assim por diante para as outras páginas) ...
+# ... (resto do código para "modulos", etc.)
